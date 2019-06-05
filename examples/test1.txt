@@ -1,0 +1,26 @@
+brojac <<= 0;
+sadrzaj <<= 0;
+pokazivac <<= 0;
+reci <<= 0;
+pokazivac2 <<= 0;
+pomocna <<= 0;
+
+<-->
+
+plus1 :: Num -> Num
+plus1 n = ?
+	return n + 1;
+?
+
+jednaRec :: String -> String -> Num
+jednaRec sadrzaj rec = ?
+	pomocna = `split` {sadrzaj, ' '};
+	check pokazivac == `size` {pomocna} loop if `get` {pokazivac, pomocna} == rec fi then brojac = `plus1` {brojac}; neht else 1; esle pool do pokazivac = `plus1` {pokazivac};
+?
+
+resi :: [String] -> Num
+resi lista = ?
+	sadrzaj = `readFile` {`head` {lista}};
+	reci = `tail` {`tail` {lista}};
+	check pokazivac2 != `size` {reci} loop `jednaRec` {sadrzaj, `get` {pokazivac2, rec}}; pool do pokazivac2 = `plus1` {pokazivac2};
+?
