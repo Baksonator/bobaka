@@ -25,6 +25,11 @@ class FunctionCall(AST):
         self.function_name = function_name
         self.arguments = arguments
 
+class MainFunction(AST):
+    def __init__(self, name, function_call):
+        self.name = name
+        self.function_call = function_call
+
 class FunDecl(AST):
     def __init__(self, type_node, fun_name, args_node, stmts_node):
         self.type_node = type_node
@@ -126,6 +131,11 @@ class Num(AST):
 class String(AST):
     def __init__(self, value):
         self.value = value
+
+class ListVar(AST):
+    def __init__(self, list_name, index):
+        self.list_name = list_name
+        self.index = index
 
 class NodeVisitor(object):
     def visit(self, node):

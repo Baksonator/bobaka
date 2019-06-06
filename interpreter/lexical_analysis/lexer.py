@@ -1,6 +1,6 @@
 from interpreter.lexical_analysis.token import Token
 from interpreter.lexical_analysis.tokenType import *
-
+import string
 
 class Lexer(object):
     def __init__(self, text):
@@ -155,7 +155,7 @@ class Lexer(object):
 
             if self.current_char == '[':
                 self.advance()
-                if self.current_char is not None and self.current_char.isalnum():
+                if self.current_char is not None and self.current_char.isalnum() and self.current_char.isupper():
                     result = ""
                     while (self.current_char is not None and self.current_char.isalnum()):
                         result += self.current_char

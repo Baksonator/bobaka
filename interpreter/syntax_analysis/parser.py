@@ -29,12 +29,11 @@ class Parser(object):
 
         self.eat(LESS)
         self.eat(MINUS)
-        # self.eat(MINUS)
         self.eat(LARROW)
 
         while self.current_token.type == ID:
             if self.current_token.value == 'main':
-                pass
+                declarations.append(self.main_function())
             else:
                 declarations.append(self.function())
 
@@ -45,6 +44,24 @@ class Parser(object):
         self.eat(TYPE)
         self.eat(ID)
         return self.current_token.type == LPAREN
+
+    def main_function(self):
+        name = self.current_token.value
+        self.function_declaration()
+        function_call = self.main_func()
+
+        return MainFunction(name, function_call)
+
+    def main_func(self):
+        self.eat(ID)
+        self.eat(ASSIGN)
+        self.eat(QMARK)
+
+        function_call = self.function_call()
+
+        self.eat(QMARK)
+
+        return function_call
 
     def include_library(self):
         self.eat(DOLLAR)
@@ -190,7 +207,7 @@ class Parser(object):
             if self.current_token.type == ID:
                 arguments.append(self.expr())
             elif self.current_token.type == GRACCENT:
-                arguments.append(self.function_call())
+                arguments.append(self.expr())
             elif self.current_token.type == APOSTROPHE:
                 self.eat(APOSTROPHE)
                 if self.current_token.value == "'":
@@ -214,7 +231,6 @@ class Parser(object):
                 self.eat(APOSTROPHE)
             else:
                 arguments.append(Num(self.current_token))
-                print(self.current_token.value, sys.stdout)
                 self.eat(INTEGER)
             if self.current_token.type == COMMA:
                 self.eat(COMMA)
@@ -418,6 +434,12 @@ class Parser(object):
             return node
         elif token.type == ID:
             self.eat(ID)
+            if self.current_token.type == LANGLEBRACKET:
+                self.eat(LANGLEBRACKET)
+                index = self.expr()
+                # self.eat(ID)
+                self.eat(RANGLEBRACKET)
+                return ListVar(token.value, index)
             return Var(token.value)
         elif token.type == GRACCENT:
             node = self.function_call()
