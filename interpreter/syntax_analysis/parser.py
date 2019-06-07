@@ -17,7 +17,6 @@ class Parser(object):
         else:
             self.error()
 
-
     def program(self):
         declarations = []
 
@@ -38,12 +37,6 @@ class Parser(object):
                 declarations.append(self.function())
 
         return Program(declarations)
-
-    @restorable
-    def check_function(self):
-        self.eat(TYPE)
-        self.eat(ID)
-        return self.current_token.type == LPAREN
 
     def main_function(self):
         name = self.current_token.value
@@ -204,34 +197,36 @@ class Parser(object):
         arguments = []
         self.eat(LBRACKET)
         while self.current_token.type != RBRACKET:
-            if self.current_token.type == ID:
-                arguments.append(self.expr())
-            elif self.current_token.type == GRACCENT:
-                arguments.append(self.expr())
-            elif self.current_token.type == APOSTROPHE:
-                self.eat(APOSTROPHE)
-                if self.current_token.value == "'":
-                    arguments.append(String(' '))
-                else:
-                    arguments.append(String(self.current_token.value))
-                if self.current_token.type == ID:
-                    self.eat(ID)
-                elif self.current_token.type == COMMA:
-                    self.eat(COMMA)
-                elif self.current_token.type == HASH:
-                    self.eat(HASH)
-                elif self.current_token.type == MUL:
-                    self.eat(MUL)
-                elif self.current_token.type == EMARK:
-                    self.eat(EMARK)
-                elif self.current_token.type == QMARK:
-                    self.eat(QMARK)
-                elif self.current_token.type == DOT:
-                    self.eat(DOT)
-                self.eat(APOSTROPHE)
-            else:
-                arguments.append(Num(self.current_token))
-                self.eat(INTEGER)
+            arguments.append(self.expr())
+            # if self.current_token.type == ID:
+            #     arguments.append(self.expr())
+            # elif self.current_token.type == GRACCENT:
+            #     arguments.append(self.expr())
+            # elif self.current_token.type == APOSTROPHE:
+            #     arguments.append(self.expr())
+                # self.eat(APOSTROPHE)
+                # if self.current_token.value == "'":
+                #     arguments.append(String(' '))
+                # else:
+                #     arguments.append(String(self.current_token.value))
+                # if self.current_token.type == ID:
+                #     self.eat(ID)
+                # elif self.current_token.type == COMMA:
+                #     self.eat(COMMA)
+                # elif self.current_token.type == HASH:
+                #     self.eat(HASH)
+                # elif self.current_token.type == MUL:
+                #     self.eat(MUL)
+                # elif self.current_token.type == EMARK:
+                #     self.eat(EMARK)
+                # elif self.current_token.type == QMARK:
+                #     self.eat(QMARK)
+                # elif self.current_token.type == DOT:
+                #     self.eat(DOT)
+                # self.eat(APOSTROPHE)
+            # else:
+            #     arguments.append(Num(self.current_token))
+            #     self.eat(INTEGER)
             if self.current_token.type == COMMA:
                 self.eat(COMMA)
         self.eat(RBRACKET)
@@ -305,112 +300,6 @@ class Parser(object):
         self.eat(SEMICOLON)
 
         return VarAssignment(name, function_call)
-
-    def function_declarations(self):
-        type_node = Type(self.current_token.value)
-        self.eat(TYPE)
-
-        fun_name = self.current_token.value
-        self.eat(ID)
-
-        self.eat(LPAREN)
-        args_node = Args(self.argument_list())
-        self.eat(RPAREN)
-
-        self.eat(LBRACKET)
-        stmts_node = Stmts(self.statement_list())
-        self.eat(RBRACKET)
-
-        return FunDecl(type_node=type_node, fun_name=fun_name, args_node=args_node, stmts_node=stmts_node)
-
-    def argument_list(self):
-        params = []
-
-        while self.current_token.type != RPAREN:
-            type_node = Type(self.current_token.value)
-            self.eat(TYPE)
-
-            var_node = Var(self.current_token.value)
-            self.eat(ID)
-
-            params.append(VarDecl(type_node, var_node))
-
-            if self.current_token.type == COMMA:
-                self.eat(COMMA)
-
-
-        return params
-
-    def statement_list(self):
-        statements = []
-
-        while self.current_token.type != RBRACKET:
-            if self.current_token.type == IF:
-                self.eat(IF)
-                self.eat(LPAREN)
-                cond = Cond(self.expr())
-                self.eat(RPAREN)
-
-                self.eat(LBRACKET)
-                stamts_node = Stmts(self.statement_list())
-                self.eat(RBRACKET)
-
-                if self.current_token.type == ELSE:
-                    self.eat(ELSE)
-
-                    self.eat(LBRACKET)
-                    else_stmts_node = Stmts(self.statement_list())
-                    self.eat(RBRACKET)
-
-                    if_node = If(cond, stamts_node, else_stmts_node)
-                    statements.append(if_node)
-                else:
-                    if_node = If(cond, stamts_node)
-                    statements.append(if_node)
-            elif self.current_token.type == TYPE:
-                statements.extend(self.var_declaration_list())
-            elif self.current_token.type == FOR:
-                self.eat(FOR)
-                self.eat(LPAREN)
-                for_decl = self.var_declaration_list()
-                # self.eat(SEMICOLON)
-                cond = Cond(self.expr())
-                self.eat(SEMICOLON)
-                stmts_node = Cond(self.expr())
-                self.eat(RPAREN)
-
-                self.eat(LBRACKET)
-                body_stmts = Stmts(self.statement_list())
-                self.eat(RBRACKET)
-
-                for_node = For(for_decl, cond, stmts_node, body_stmts)
-                statements.append(for_node)
-
-        return statements
-
-
-
-    def var_declaration_list(self):
-
-        declarations = []
-
-        type_node = Type(self.current_token.value)
-        self.eat(TYPE)
-        var_node = Var(self.current_token.value)
-        self.eat(ID)
-
-        declarations.extend(self.var_declaration(type_node, var_node))
-
-        while self.current_token.type == COMMA:
-            self.eat(COMMA)
-            var_node = Var(self.current_token.value)
-            self.eat(ID)
-
-            declarations.extend(self.var_declaration(type_node, var_node))
-
-        self.eat(SEMICOLON)
-
-        return declarations
 
     def var_declaration(self):
         name = self.current_token.value
@@ -509,47 +398,22 @@ class Parser(object):
         return node
 
     def bool(self):
-        # result = True
         node = self.expr()
 
         while self.current_token.type in (LESS, GREATHER, EQUAL, NOT_EQUAL, LESS_EQ, GREATHER_EQ):
             token = self.current_token
             if token.type == LESS:
                 self.eat(LESS)
-                # right = self.expr()
-                # if not (left < right):
-                #     result = False
-                # left = right
             elif token.type == GREATHER:
                 self.eat(GREATHER)
-                # right = self.expr()
-                # if not (left > right):
-                #     result = False
-                # left = right
             elif token.type == EQUAL:
                 self.eat(EQUAL)
-                # right = self.expr()
-                # if not (left == right):
-                #     result = False
-                # left = right
             elif token.type == NOT_EQUAL:
                 self.eat(NOT_EQUAL)
-                # right = self.expr()
-                # if not (left != right):
-                #     result = False
-                # left = right
             elif token.type == LESS_EQ:
                 self.eat(LESS_EQ)
-                # right = self.expr()
-                # if not (left <= right):
-                #     result = False
-                # left = right
             elif token.type == GREATHER_EQ:
                 self.eat(GREATHER_EQ)
-                # right = self.expr()
-                # if not (left >= right):
-                #     result = False
-                # left = right
             else:
                 self.error()
 

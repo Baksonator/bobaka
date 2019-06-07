@@ -1,0 +1,63 @@
+program: declarations
+
+declarations: lib* variable_declaration* <'<-->'> function* mainFunction
+
+lib: DOLLAR <'libinclude'> DOLLAR ID SEMICOLON
+
+variable_declaration: variable initialization
+
+initialization: INITIALIZE bool SEMICOLON
+
+variable_assignment: variable ASSIGN function_call SEMICOLON
+
+mainFunction: funcDecl mainFunc
+
+mainFunc: name <'='> <'?'> function_call <'?'>
+
+funcDecl: name <'::'> types
+
+function: funcDecl func
+
+func: name params <'='> <'?'> funcBody <'?'>
+
+name: ID
+
+types: type (<'->'> type)*
+
+params: ID*
+
+funcBody: expression* return_statement?
+
+return_statement: RETURN regExpression
+
+expression: (conditional | loop | regExpression | variable_assignment)
+
+conditional: <'if'> boolExpression <'fi'> <'then'> expression <'neht'> <'else'> expression <'esle'>
+
+loop: <'check'> boolExpression <'loop'> expression <'pool'> (<'do'> variable_assignment)?
+
+regExpression: boolExpression SEMICOLON
+
+boolExpression: <'!'>? bool (logicalOperator <'!'>? bool)*
+
+bool: expr (comparator expr)*
+
+expr: term ((PLUS | MINUS) term)*
+
+term: factor ((MUL | DIV | REALDIV | MOD) factor)*
+
+factor: PLUS factor | MINUS factor | NUMBER | LPAREN expr RPAREN | variable | function_call | STRING | LIST
+
+variable: name
+
+comparator: LESS | GREATER | EQUAL | NOT_EQUAL | LESS_EQ | GREATER_EQ
+
+string: CHAR*
+
+type: Char | Bool | Num | String | list | IO
+
+list: <'['> type <']'>
+
+logicalOperator: AND | OR
+
+function_call: <'`'> name <'`'> <'{'> (expr (<','> expr)*)? <'}'>

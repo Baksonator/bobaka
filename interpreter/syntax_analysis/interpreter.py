@@ -61,10 +61,6 @@ class Loop(AST):
         self.loop_body = loop_body
         self.last_part = last_part
 
-class Type(AST):
-    def __init__(self, type):
-        self.type = type
-
 class Var(AST):
     def __init__(self, var):
         self.var = var
@@ -78,44 +74,6 @@ class VarAssignment(AST):
     def __init__(self, name, function_call):
         self.name = name
         self.function_call = function_call
-
-class Assign(AST):
-    def __init__(self, var_node, expr):
-        self.var_node = var_node
-        self.expr = expr
-
-class Args(AST):
-    def __init__(self, args):
-        self.args = args
-
-class Stmts(AST):
-    def __init__(self, stmts):
-        self.stmts = stmts
-
-class If(AST):
-    def __init__(self, cond_node, body_node, else_node=None):
-        self.cond_node = cond_node
-        self.body_node = body_node
-        self.else_node = else_node
-
-class Cond(AST):
-    def __init__(self, cond):
-        self.cond = cond
-
-class Body(AST):
-    def __init__(self, stmts):
-        self.stmts = stmts
-
-class Else(AST):
-    def __init__(self, stmts):
-        self.stmts = stmts
-
-class For(AST):
-    def __init__(self, var_decl, cond, stmts, body_stmts):
-        self.var_decl = var_decl
-        self.cond = cond
-        self.stmts = stmts
-        self.body_stmts = body_stmts
 
 class BinOp(AST):
     def __init__(self, left, op, right):
