@@ -1,0 +1,21 @@
+$libinclude$ random;
+
+brojac <<= 0;
+
+<-->
+
+plus1 :: Num -> Num
+plus1 x = ?
+	return x + 1;
+?
+
+nasumicniBrojevi :: Num -> Num
+nasumicniBrojevi n = ?
+	check brojac != n loop `print` {`random` {1, 101}}; pool do brojac = `plus1` {brojac};
+	return brojac;
+?
+
+main :: Num
+main = ?
+	`nasumicniBrojevi` {`inputint` {}}
+?

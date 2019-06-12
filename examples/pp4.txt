@@ -1,0 +1,25 @@
+z <<= 0;
+n <<= 0;
+
+<-->
+
+saberi :: Num -> Num -> Num
+saberi x y = ?
+	return x + y;
+?
+
+plus1 :: Num -> Num
+plus1 x = ?
+	return x + 1;
+?
+
+arithmSredina :: [Num] -> Num
+arithmSredina lista = ?
+	check n != `len` {lista} loop z = `saberi` {z, `int` {lista[n]}}; pool do n = `plus1` {n};
+	`print` {z / n};
+?
+
+main :: Num
+main = ?
+	`arithmSredina` {`split` {`input` {}}}
+?

@@ -1,0 +1,55 @@
+$libinclude$ math;
+
+z <<= 0;
+lista <<= [];
+brojac <<= 0;
+koren <<= 0;
+res <<= False;
+
+<-->
+
+ucitavanjeDok :: [Num]
+ucitavanjeDok = ?
+	z = `inputint` {};
+	check z > 0 loop `append` {lista, z}; pool do z = `inputint` {};
+?
+
+setTrue :: Bool
+setTrue = ?
+	return True;
+?
+
+setFalse :: Bool
+setFalse = ?
+	return False;
+?
+
+proveriBroj :: Num -> Bool
+proveriBroj n = ?
+	koren = `round` {`sqrt` {n}};
+	if koren * koren == n fi then res = `setTrue` {}; neht else res = `setFalse` {}; esle
+	return res;
+?
+
+plus1 :: Num -> Num
+plus1 x = ?
+	return x + 1;
+?
+
+ispisiBrojeve :: Num -> Num
+ispisiBrojeve size = ?
+    if `proveriBroj` {lista[brojac]} fi then `putStr` {lista[brojac]}; neht else 2 + 3; esle
+    brojac = `plus1` {brojac};
+	check brojac != size loop if `proveriBroj` {lista[brojac]} fi then `putStr` {',' + `str` {lista[brojac]}}; neht else 1; esle pool do brojac = `plus1` {brojac};
+?
+
+resi :: Num -> Num
+resi = ?
+	`ucitavanjeDok` {};
+	`ispisiBrojeve` {`len` {lista}};
+?
+
+main :: Num
+main = ?
+	`resi` {}
+?

@@ -1,0 +1,49 @@
+brojac <<= 0;
+prev <<= 0;
+res <<= False;
+
+<-->
+
+setTrue :: Bool
+setTrue = ?
+	return True;
+?
+
+setFalse :: Bool
+setFalse = ?
+	return False;
+?
+
+duzaN :: String -> Num -> Bool
+duzaN ulaz n = ?
+	if `len` {ulaz} > n fi then res = `setTrue` {}; neht else res = `setFalse` {}; esle
+	return res;
+?
+
+plus1 :: Num -> Num
+plus1 n = ?
+	return n + 1;
+?
+
+vratiBrojac :: Num
+vratiBrojac = ?
+	return brojac;
+?
+
+resiJedna :: String -> Num -> Num -> Num
+resiJedna ulaz size n = ?
+	check brojac < size and ulaz[brojac] != ',' and ulaz[brojac] != '.' and ulaz[brojac] != '!' and ulaz[brojac] != '?' and ulaz[brojac] != ' ' loop 1 + 2; pool do brojac = `plus1` {brojac};
+	if `duzaN` {`subStr` {prev, brojac, ulaz}, n} fi then `print` {`toCaps` {`subStr` {prev, brojac, ulaz}}}; neht else `print` {`subStr` {prev, brojac, ulaz}}; esle
+	brojac = `plus1` {brojac};
+	prev = `vratiBrojac` {};
+?
+
+resiSve :: String -> Num -> Num -> Num
+resiSve ulaz n = ?
+	check brojac < `len` {ulaz} loop `resiJedna` {ulaz, `len` {ulaz}, n}; pool
+?
+
+main :: Num
+main = ?
+	`resiSve` {`input` {}, `inputint` {}}
+?

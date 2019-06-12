@@ -1,0 +1,21 @@
+<-->
+
+idealnaM :: Num -> Num
+idealnaM h = ?
+	return h - 120;
+?
+
+idealnaZ :: Num -> Num
+idealnaZ h = ?
+	return h - 100;
+?
+
+resi :: Num -> IO
+resi h = ?
+	`print` {`idealnaM` {h}, `idealnaZ` {h}};
+?
+
+main :: Num
+main = ?
+	`resi` {`inputint` {}}
+?

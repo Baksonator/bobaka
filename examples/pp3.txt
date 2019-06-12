@@ -1,0 +1,39 @@
+<-->
+
+maksimumOd4 :: Num -> Num -> Num -> Num -> Num
+maksimumOd4 x y z t = ?
+	if x > y fi then 
+		if x > z fi then
+			if x > t fi then
+				`print` {x};
+			neht else
+				`print` {t};
+			esle
+		neht else
+			if z > t fi then
+				`print` {z};
+			neht else
+				`print` {t};
+			esle
+		esle
+	neht else
+		if y > z fi then
+			if y > t fi then
+				`print` {y};
+			neht else
+				`print` {t};
+			esle
+		neht else
+			if z > t fi then
+				`print` {z};
+			neht else
+				`print` {t};
+			esle
+		esle
+	esle
+?
+
+main :: Num
+main = ?
+	`maksimumOd4` {`inputint` {} `inputint` {} `inputint` {} `inputint` {}}
+?

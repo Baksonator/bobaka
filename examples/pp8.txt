@@ -1,0 +1,52 @@
+brojac <<= 0;
+c <<= 0;
+
+<-->
+
+reset :: Num -> Num
+reset n = ?
+	return n * 0;
+?
+
+plus2 :: Num -> Num
+plus2 n = ?
+	return n + 2;
+?
+
+plus1 :: Num -> Num
+plus1 n = ?
+	return n + 1;
+?
+
+ispisReda :: String -> Num -> Num
+ispisReda ulaz size = ?
+	c = `reset` {c};
+	check c != (size - brojac) // 2 loop `putStr` {' '}; pool do c = `plus1` {c};
+	check c != (size - brojac) // 2 + brojac loop `putStr` {ulaz[c]}; pool do c = `plus1` {c};
+	check c != size loop `putStr` {' '}; pool do c = `plus1` {c};
+	`print` {''};
+?
+
+ispisParno :: String -> Num -> Num
+ispisParno ulaz size = ?
+	brojac = `plus2` {brojac};
+	check brojac != size loop `ispisReda` {ulaz, size}; pool do brojac = `plus2` {brojac};
+	`print` {ulaz};
+?
+
+ispisNeparno :: String -> Num -> Num
+ispisNeparno ulaz size = ?
+	brojac = `plus1` {brojac};
+	check brojac != size loop `ispisReda` {ulaz, size}; pool do brojac = `plus2` {brojac};
+	`print` {ulaz};
+?
+
+ispis :: String -> Num
+ispis ulaz = ?
+	if `len` {ulaz} % 2 == 0 fi then `ispisParno` {ulaz, `len` {ulaz}}; neht else `ispisNeparno` {ulaz, `len` {ulaz}}; esle
+?
+
+main :: Num
+main = ?
+	`ispis` {`input` {}}
+?

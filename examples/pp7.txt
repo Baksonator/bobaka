@@ -1,0 +1,32 @@
+brojac <<= 0;
+
+<-->
+
+plus1 :: Num -> Num
+plus1 x = ?
+	return x + 1;
+?
+
+tarabaZvezda :: String -> Num
+tarabaZvezda ulaz = ?
+	check brojac != `len` {ulaz} - 1 loop if `isDigit` {ulaz[brojac]} fi then 
+																						if `isChar` {ulaz[brojac + 1]} fi then 
+																																	`putStr` {ulaz[brojac] + '#'}; 
+																															neht else 
+																																`putStr` {ulaz[brojac]}; 
+																															esle 
+																					neht else 
+																								if `isChar` {ulaz[brojac]} fi then 
+																																		if `isDigit` {ulaz[brojac + 1]} fi then 
+																																													`putStr` {ulaz[brojac] + '*'}; 
+																																												neht else 
+																																													`putStr` {ulaz[brojac]}; 
+																																												esle 
+																																	neht else `putStr` {ulaz[brojac]}; esle esle pool do brojac = `plus1` {brojac};
+	`putStr` {ulaz[brojac]};
+?
+
+main :: Num
+main = ?
+	`tarabaZvezda` {`input` {}}
+?
