@@ -1,30 +1,30 @@
-brojac = 0
+counter = 0
 c = 0
 def reset(n):
-	global brojac
+	global counter
 	global c
 	return (n * 0)
 
 def plus2(n):
-	global brojac
+	global counter
 	global c
 	return (n + 2)
 
 def plus1(n):
-	global brojac
+	global counter
 	global c
 	return (n + 1)
 
-def ispisReda(ulaz,size):
-	global brojac
+def writeLn(input,size):
+	global counter
 	global c
 	c = reset(c)
-	while (c != ((size - brojac) // 2)):
+	while (c != ((size - counter) // 2)):
 		print(' ', end='')
 		c = plus1(c)
 
-	while (c != (((size - brojac) // 2) + brojac)):
-		print(ulaz[c], end='')
+	while (c != (((size - counter) // 2) + counter)):
+		print(input[c], end='')
 		c = plus1(c)
 
 	while (c != size):
@@ -33,35 +33,35 @@ def ispisReda(ulaz,size):
 
 	print(' ')
 
-def ispisParno(ulaz,size):
-	global brojac
+def outputEven(input,size):
+	global counter
 	global c
-	brojac = plus2(brojac)
-	while (brojac != size):
-		ispisReda(ulaz,size)
-		brojac = plus2(brojac)
+	counter = plus2(counter)
+	while (counter != size):
+		writeLn(input,size)
+		counter = plus2(counter)
 
-	print(ulaz)
+	print(input)
 
-def ispisNeparno(ulaz,size):
-	global brojac
+def outputOdd(input,size):
+	global counter
 	global c
-	brojac = plus1(brojac)
-	while (brojac != size):
-		ispisReda(ulaz,size)
-		brojac = plus2(brojac)
+	counter = plus1(counter)
+	while (counter != size):
+		writeLn(input,size)
+		counter = plus2(counter)
 
-	print(ulaz)
+	print(input)
 
-def ispis(ulaz):
-	global brojac
+def output(input):
+	global counter
 	global c
-	if ((len(ulaz) % 2) == 0):
-		ispisParno(ulaz,len(ulaz))
+	if ((len(input) % 2) == 0):
+		outputEven(input,len(input))
 	else:
-		ispisNeparno(ulaz,len(ulaz))
+		outputOdd(input,len(input))
 
 def main():
-	ispis(input())
+	output(input())
 
 main()

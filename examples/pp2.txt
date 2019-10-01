@@ -2,33 +2,33 @@ z <<= 0;
 
 <-->
 
-isNula :: Num -> Bool
-isNula n = ?
+isZero :: Num -> Bool
+isZero n = ?
 	return n == 0;
 ?
 
-deljenje10 :: Num -> Num
-deljenje10 n = ?
+division10 :: Num -> Num
+division10 n = ?
 	return n // 10;
 ?
 
-saberiMod10 :: Num -> Num -> Num
-saberiMod10 x y = ?
+addMod10 :: Num -> Num -> Num
+addMod10 x y = ?
 	return x + y % 10;
 ?
 
-veceOdDeset :: Num -> Bool
-veceOdDeset n = ?
-	if n > 10 fi then `print` {'Vece'}; neht else `print` {'Manje'}; esle
+greaterThanTen :: Num -> Bool
+greaterThanTen n = ?
+	if n > 10 fi then `print` {'Greater'}; neht else `print` {'Less'}; esle
 ?
 
-proveri :: Num -> Bool
-proveri n = ?
-	check !`isNula` {n} loop z = `saberiMod10` {z, n}; pool do n = `deljenje10` {n};
-	`veceOdDeset` {z};
+check :: Num -> Bool
+check n = ?
+	check !`isZero` {n} loop z = `addMod10` {z, n}; pool do n = `division10` {n};
+	`greaterThanTen` {z};
 ?
 
 main :: Num
 main = ?
-	`proveri` {`inputint` {}}
+	`check` {`inputint` {}}
 ?

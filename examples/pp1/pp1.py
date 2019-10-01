@@ -1,13 +1,13 @@
-def idealnaM(h):
+def idealM(h):
 	return (h - 120)
 
-def idealnaZ(h):
+def idealF(h):
 	return (h - 100)
 
-def resi(h):
-	print(idealnaM(h),idealnaZ(h))
+def solve(h):
+	print(idealM(h),idealF(h))
 
 def main():
-	resi(int(input()))
+	solve(int(input()))
 
 main()

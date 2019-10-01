@@ -1,4 +1,4 @@
-def maksimumOd4(x,y,z,t):
+def maxOutOf4(x,y,z,t):
 	if (x > y):
 		if (x > z):
 			if (x > t):
@@ -23,6 +23,6 @@ def maksimumOd4(x,y,z,t):
 				print(t)
 
 def main():
-	maksimumOd4(int(input()),int(input()),int(input()),int(input()))
+	maxOutOf4(int(input()),int(input()),int(input()),int(input()))
 
 main()

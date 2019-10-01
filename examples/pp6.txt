@@ -1,17 +1,17 @@
 $libinclude$ math;
 
 z <<= 0;
-lista <<= [];
-brojac <<= 0;
-koren <<= 0;
+listOf <<= [];
+counter <<= 0;
+root <<= 0;
 res <<= False;
 
 <-->
 
-ucitavanjeDok :: [Num]
-ucitavanjeDok = ?
+readUntil :: [Num]
+readUntil = ?
 	z = `inputint` {};
-	check z > 0 loop `append` {lista, z}; pool do z = `inputint` {};
+	check z > 0 loop `append` {listOf, z}; pool do z = `inputint` {};
 ?
 
 setTrue :: Bool
@@ -24,10 +24,10 @@ setFalse = ?
 	return False;
 ?
 
-proveriBroj :: Num -> Bool
-proveriBroj n = ?
-	koren = `round` {`sqrt` {n}};
-	if koren * koren == n fi then res = `setTrue` {}; neht else res = `setFalse` {}; esle
+checkNumber :: Num -> Bool
+checkNumber n = ?
+	root = `round` {`sqrt` {n}};
+	if root * root == n fi then res = `setTrue` {}; neht else res = `setFalse` {}; esle
 	return res;
 ?
 
@@ -36,20 +36,20 @@ plus1 x = ?
 	return x + 1;
 ?
 
-ispisiBrojeve :: Num -> Num
-ispisiBrojeve size = ?
-    if `proveriBroj` {lista[brojac]} fi then `putStr` {lista[brojac]}; neht else 2 + 3; esle
-    brojac = `plus1` {brojac};
-	check brojac != size loop if `proveriBroj` {lista[brojac]} fi then `putStr` {',' + `str` {lista[brojac]}}; neht else 1; esle pool do brojac = `plus1` {brojac};
+outputNumbers :: Num -> Num
+outputNumbers size = ?
+    if `checkNumber` {listOf[counter]} fi then `putStr` {listOf[counter]}; neht else 2 + 3; esle
+    counter = `plus1` {counter};
+	check counter != size loop if `checkNumber` {listOf[counter]} fi then `putStr` {',' + `str` {listOf[counter]}}; neht else 1; esle pool do counter = `plus1` {counter};
 ?
 
-resi :: Num -> Num
-resi = ?
-	`ucitavanjeDok` {};
-	`ispisiBrojeve` {`len` {lista}};
+solve :: Num -> Num
+solve = ?
+	`readUntil` {};
+	`outputNumbers` {`len` {listOf}};
 ?
 
 main :: Num
 main = ?
-	`resi` {}
+	`solve` {}
 ?

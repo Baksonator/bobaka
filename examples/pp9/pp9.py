@@ -1,64 +1,64 @@
-brojac = 0
+counter = 0
 prev = 0
 res = False
 def setTrue():
-	global brojac
+	global counter
 	global prev
 	global res
 	return True
 
 def setFalse():
-	global brojac
+	global counter
 	global prev
 	global res
 	return False
 
-def duzaN(ulaz,n):
-	global brojac
+def longerThanN(input,n):
+	global counter
 	global prev
 	global res
-	if (len(ulaz) > n):
+	if (len(input) > n):
 		res = setTrue()
 	else:
 		res = setFalse()
 	return res
 
 def plus1(n):
-	global brojac
+	global counter
 	global prev
 	global res
 	return (n + 1)
 
-def vratiBrojac():
-	global brojac
+def returnCounter():
+	global counter
 	global prev
 	global res
-	return brojac
+	return counter
 
-def resiJedna(ulaz,size,n):
-	global brojac
+def solveOne(input,size,n):
+	global counter
 	global prev
 	global res
-	while (brojac < size) and (ulaz[brojac] != ',') and (ulaz[brojac] != '.') and (ulaz[brojac] != '!') and (ulaz[brojac] != '?') and (ulaz[brojac] != ' '):
+	while (counter < size) and (input[counter] != ',') and (input[counter] != '.') and (input[counter] != '!') and (input[counter] != '?') and (input[counter] != ' '):
 		(1 + 2)
-		brojac = plus1(brojac)
+		counter = plus1(counter)
 
-	if duzaN(ulaz[prev:brojac],n):
-		print(ulaz[prev:brojac].upper())
+	if longerThanN(input[prev:counter],n):
+		print(input[prev:counter].upper())
 	else:
-		print(ulaz[prev:brojac])
-	brojac = plus1(brojac)
-	prev = vratiBrojac()
+		print(input[prev:counter])
+	counter = plus1(counter)
+	prev = returnCounter()
 
-def resiSve(ulaz,n):
-	global brojac
+def solveAll(input,n):
+	global counter
 	global prev
 	global res
-	while (brojac < len(ulaz)):
-		resiJedna(ulaz,len(ulaz),n)
+	while (counter < len(input)):
+		solveOne(input,len(input),n)
 
 
 def main():
-	resiSve(input(),int(input()))
+	solveAll(input(),int(input()))
 
 main()

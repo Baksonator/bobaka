@@ -1,7 +1,7 @@
 <-->
 
-maksimumOd4 :: Num -> Num -> Num -> Num -> Num
-maksimumOd4 x y z t = ?
+maxOutOf4 :: Num -> Num -> Num -> Num -> Num
+maxOutOf4 x y z t = ?
 	if x > y fi then 
 		if x > z fi then
 			if x > t fi then
@@ -35,5 +35,5 @@ maksimumOd4 x y z t = ?
 
 main :: Num
 main = ?
-	`maksimumOd4` {`inputint` {} `inputint` {} `inputint` {} `inputint` {}}
+	`maxOutOf4` {`inputint` {} `inputint` {} `inputint` {} `inputint` {}}
 ?

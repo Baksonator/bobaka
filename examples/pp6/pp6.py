@@ -1,45 +1,45 @@
 import math
 z = 0
-lista = []
-brojac = 0
-koren = 0
+listOf = []
+counter = 0
+root = 0
 res = False
-def ucitavanjeDok():
+def readUntil():
 	global z
-	global lista
-	global brojac
-	global koren
+	global listOf
+	global counter
+	global root
 	global res
 	z = int(input())
 	while (z > 0):
-		lista.append(z)
+		listOf.append(z)
 		z = int(input())
 
 
 def setTrue():
 	global z
-	global lista
-	global brojac
-	global koren
+	global listOf
+	global counter
+	global root
 	global res
 	return True
 
 def setFalse():
 	global z
-	global lista
-	global brojac
-	global koren
+	global listOf
+	global counter
+	global root
 	global res
 	return False
 
-def proveriBroj(n):
+def checkNumber(n):
 	global z
-	global lista
-	global brojac
-	global koren
+	global listOf
+	global counter
+	global root
 	global res
-	koren = round(math.sqrt(n))
-	if ((koren * koren) == n):
+	root = round(math.sqrt(n))
+	if ((root * root) == n):
 		res = setTrue()
 	else:
 		res = setFalse()
@@ -47,41 +47,41 @@ def proveriBroj(n):
 
 def plus1(x):
 	global z
-	global lista
-	global brojac
-	global koren
+	global listOf
+	global counter
+	global root
 	global res
 	return (x + 1)
 
-def ispisiBrojeve(size):
+def outputNumbers(size):
 	global z
-	global lista
-	global brojac
-	global koren
+	global listOf
+	global counter
+	global root
 	global res
-	if proveriBroj(lista[brojac]):
-		print(lista[brojac], end='')
+	if checkNumber(listOf[counter]):
+		print(listOf[counter], end='')
 	else:
 		(2 + 3)
-	brojac = plus1(brojac)
-	while (brojac != size):
-		if proveriBroj(lista[brojac]):
-			print((',' + str(lista[brojac])), end='')
+	counter = plus1(counter)
+	while (counter != size):
+		if checkNumber(listOf[counter]):
+			print((',' + str(listOf[counter])), end='')
 		else:
 			1
-		brojac = plus1(brojac)
+		counter = plus1(counter)
 
 
-def resi():
+def solve():
 	global z
-	global lista
-	global brojac
-	global koren
+	global listOf
+	global counter
+	global root
 	global res
-	ucitavanjeDok()
-	ispisiBrojeve(len(lista))
+	readUntil()
+	outputNumbers(len(listOf))
 
 def main():
-	resi()
+	solve()
 
 main()

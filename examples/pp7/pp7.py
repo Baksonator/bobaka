@@ -1,29 +1,29 @@
-brojac = 0
+counter = 0
 def plus1(x):
-	global brojac
+	global counter
 	return (x + 1)
 
-def tarabaZvezda(ulaz):
-	global brojac
-	while (brojac != (len(ulaz) - 1)):
-		if ulaz[brojac].isdigit():
-			if ulaz[(brojac + 1)].isalpha():
-				print((ulaz[brojac] + '#'), end='')
+def hashtagAsterisk(input):
+	global counter
+	while (counter != (len(input) - 1)):
+		if input[counter].isdigit():
+			if input[(counter + 1)].isalpha():
+				print((input[counter] + '#'), end='')
 			else:
-				print(ulaz[brojac], end='')
+				print(input[counter], end='')
 		else:
-			if ulaz[brojac].isalpha():
-				if ulaz[(brojac + 1)].isdigit():
-					print((ulaz[brojac] + '*'), end='')
+			if input[counter].isalpha():
+				if input[(counter + 1)].isdigit():
+					print((input[counter] + '*'), end='')
 				else:
-					print(ulaz[brojac], end='')
+					print(input[counter], end='')
 			else:
-				print(ulaz[brojac], end='')
-		brojac = plus1(brojac)
+				print(input[counter], end='')
+		counter = plus1(counter)
 
-	print(ulaz[brojac], end='')
+	print(input[counter], end='')
 
 def main():
-	tarabaZvezda(input())
+	hashtagAsterisk(input())
 
 main()

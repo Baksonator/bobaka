@@ -1,6 +1,6 @@
 z = 0
 n = 0
-def saberi(x,y):
+def add(x,y):
 	global z
 	global n
 	return (x + y)
@@ -10,16 +10,16 @@ def plus1(x):
 	global n
 	return (x + 1)
 
-def arithmSredina(lista):
+def mean(list):
 	global z
 	global n
-	while (n != len(lista)):
-		z = saberi(z,int(lista[n]))
+	while (n != len(list)):
+		z = add(z,int(list[n]))
 		n = plus1(n)
 
 	print((z / n))
 
 def main():
-	arithmSredina(input().split())
+	mean(input().split())
 
 main()

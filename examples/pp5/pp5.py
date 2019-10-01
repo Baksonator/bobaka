@@ -1,18 +1,18 @@
 import random
-brojac = 0
+counter = 0
 def plus1(x):
-	global brojac
+	global counter
 	return (x + 1)
 
-def nasumicniBrojevi(n):
-	global brojac
-	while (brojac != n):
+def randomNumbers(n):
+	global counter
+	while (counter != n):
 		print(random.randrange(1,101))
-		brojac = plus1(brojac)
+		counter = plus1(counter)
 
-	return brojac
+	return counter
 
 def main():
-	nasumicniBrojevi(int(input()))
+	randomNumbers(int(input()))
 
 main()

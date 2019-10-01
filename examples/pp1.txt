@@ -1,21 +1,21 @@
 <-->
 
-idealnaM :: Num -> Num
-idealnaM h = ?
+idealM :: Num -> Num
+idealM h = ?
 	return h - 120;
 ?
 
-idealnaZ :: Num -> Num
-idealnaZ h = ?
+idealF :: Num -> Num
+idealF h = ?
 	return h - 100;
 ?
 
-resi :: Num -> IO
-resi h = ?
-	`print` {`idealnaM` {h}, `idealnaZ` {h}};
+solve :: Num -> IO
+solve h = ?
+	`print` {`idealM` {h}, `idealF` {h}};
 ?
 
 main :: Num
 main = ?
-	`resi` {`inputint` {}}
+	`solve` {`inputint` {}}
 ?

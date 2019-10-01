@@ -1,4 +1,4 @@
-brojac <<= 0;
+counter <<= 0;
 
 <-->
 
@@ -7,26 +7,26 @@ plus1 x = ?
 	return x + 1;
 ?
 
-tarabaZvezda :: String -> Num
-tarabaZvezda ulaz = ?
-	check brojac != `len` {ulaz} - 1 loop if `isDigit` {ulaz[brojac]} fi then 
-																						if `isChar` {ulaz[brojac + 1]} fi then 
-																																	`putStr` {ulaz[brojac] + '#'}; 
+hashtagAsterisk :: String -> Num
+hashtagAsterisk input = ?
+	check counter != `len` {input} - 1 loop if `isDigit` {input[counter]} fi then 
+																						if `isChar` {input[counter + 1]} fi then 
+																																	`putStr` {input[counter] + '#'}; 
 																															neht else 
-																																`putStr` {ulaz[brojac]}; 
+																																`putStr` {input[counter]}; 
 																															esle 
 																					neht else 
-																								if `isChar` {ulaz[brojac]} fi then 
-																																		if `isDigit` {ulaz[brojac + 1]} fi then 
-																																													`putStr` {ulaz[brojac] + '*'}; 
+																								if `isChar` {input[counter]} fi then 
+																																		if `isDigit` {input[counter + 1]} fi then 
+																																													`putStr` {input[counter] + '*'}; 
 																																												neht else 
-																																													`putStr` {ulaz[brojac]}; 
+																																													`putStr` {input[counter]}; 
 																																												esle 
-																																	neht else `putStr` {ulaz[brojac]}; esle esle pool do brojac = `plus1` {brojac};
-	`putStr` {ulaz[brojac]};
+																																	neht else `putStr` {input[counter]}; esle esle pool do counter = `plus1` {counter};
+	`putStr` {input[counter]};
 ?
 
 main :: Num
 main = ?
-	`tarabaZvezda` {`input` {}}
+	`hashtagAsterisk` {`input` {}}
 ?

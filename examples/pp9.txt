@@ -1,4 +1,4 @@
-brojac <<= 0;
+counter <<= 0;
 prev <<= 0;
 res <<= False;
 
@@ -14,9 +14,9 @@ setFalse = ?
 	return False;
 ?
 
-duzaN :: String -> Num -> Bool
-duzaN ulaz n = ?
-	if `len` {ulaz} > n fi then res = `setTrue` {}; neht else res = `setFalse` {}; esle
+longerThanN :: String -> Num -> Bool
+longerThanN input n = ?
+	if `len` {input} > n fi then res = `setTrue` {}; neht else res = `setFalse` {}; esle
 	return res;
 ?
 
@@ -25,25 +25,25 @@ plus1 n = ?
 	return n + 1;
 ?
 
-vratiBrojac :: Num
-vratiBrojac = ?
-	return brojac;
+returnCounter :: Num
+returnCounter = ?
+	return counter;
 ?
 
-resiJedna :: String -> Num -> Num -> Num
-resiJedna ulaz size n = ?
-	check brojac < size and ulaz[brojac] != ',' and ulaz[brojac] != '.' and ulaz[brojac] != '!' and ulaz[brojac] != '?' and ulaz[brojac] != ' ' loop 1 + 2; pool do brojac = `plus1` {brojac};
-	if `duzaN` {`subStr` {prev, brojac, ulaz}, n} fi then `print` {`toCaps` {`subStr` {prev, brojac, ulaz}}}; neht else `print` {`subStr` {prev, brojac, ulaz}}; esle
-	brojac = `plus1` {brojac};
-	prev = `vratiBrojac` {};
+solveOne :: String -> Num -> Num -> Num
+solveOne input size n = ?
+	check counter < size and input[counter] != ',' and input[counter] != '.' and input[counter] != '!' and input[counter] != '?' and input[counter] != ' ' loop 1 + 2; pool do counter = `plus1` {counter};
+	if `longerThanN` {`subStr` {prev, counter, input}, n} fi then `print` {`toCaps` {`subStr` {prev, counter, input}}}; neht else `print` {`subStr` {prev, counter, input}}; esle
+	counter = `plus1` {counter};
+	prev = `returnCounter` {};
 ?
 
-resiSve :: String -> Num -> Num -> Num
-resiSve ulaz n = ?
-	check brojac < `len` {ulaz} loop `resiJedna` {ulaz, `len` {ulaz}, n}; pool
+solveAll :: String -> Num -> Num -> Num
+solveAll input n = ?
+	check counter < `len` {input} loop `solveOne` {input, `len` {input}, n}; pool
 ?
 
 main :: Num
 main = ?
-	`resiSve` {`input` {}, `inputint` {}}
+	`solveAll` {`input` {}, `inputint` {}}
 ?

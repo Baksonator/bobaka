@@ -1,8 +1,8 @@
-brojac <<= 0;
-sadrzaj <<= 0;
-pokazivac <<= 0;
-pokazivac2 <<= 0;
-pomocna <<= 0;
+counter <<= 0;
+contents <<= 0;
+pointer <<= 0;
+pointer2 <<= 0;
+helper <<= 0;
 
 <-->
 
@@ -16,23 +16,23 @@ reset n = ?
 	return n * 0;
 ?
 
-jednaRec :: String -> String -> Num
-jednaRec rec = ?
-	brojac = `reset` {brojac};
-	pokazivac = `reset` {pokazivac};
-	pomocna = `split` {sadrzaj};
-	check pokazivac != `len` {pomocna} loop if `toLower` {pomocna[pokazivac]} == rec fi then brojac = `plus1` {brojac}; neht else 1; esle pool do pokazivac = `plus1` {pokazivac};
-	`print` {rec, brojac};
+oneWord :: String -> String -> Num
+oneWord word = ?
+	counter = `reset` {counter};
+	pointer = `reset` {pointer};
+	helper = `split` {contents};
+	check pointer != `len` {helper} loop if `toLower` {helper[pointer]} == word fi then counter = `plus1` {counter}; neht else 1; esle pool do pointer = `plus1` {pointer};
+	`print` {word, counter};
 ?
 
-resi :: [String] -> Num
-resi fajl broj reci = ?
-	praveReci = `split` {reci};
-	sadrzaj = `readFile` {fajl};
-	check pokazivac2 != broj loop `jednaRec` {praveReci[pokazivac2]}; pool do pokazivac2 = `plus1` {pokazivac2};
+solve :: [String] -> Num
+solve file number words = ?
+	praveReci = `split` {words};
+	contents = `readFile` {file};
+	check pointer2 != number loop `oneWord` {praveReci[pointer2]}; pool do pointer2 = `plus1` {pointer2};
 ?
 
 main :: Num
 main = ?
-	`resi` {`input` {}, `inputint` {}, `input` {}}
+	`solve` {`input` {}, `inputint` {}, `input` {}}
 ?
