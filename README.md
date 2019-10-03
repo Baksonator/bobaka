@@ -1,4 +1,4 @@
-# Bobaka
+# bobaka
 
 "bobaka" is my own programming language that was created as a mixture of Haskell and tradiotional imperative languages.
 
