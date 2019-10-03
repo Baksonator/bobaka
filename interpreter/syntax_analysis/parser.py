@@ -1,7 +1,6 @@
 from interpreter.lexical_analysis.tokenType import *
 from interpreter.syntax_analysis.interpreter import *
 from interpreter.syntax_analysis.util import restorable
-import sys
 
 class Parser(object):
     def __init__(self, lexer):
@@ -198,35 +197,6 @@ class Parser(object):
         self.eat(LBRACKET)
         while self.current_token.type != RBRACKET:
             arguments.append(self.expr())
-            # if self.current_token.type == ID:
-            #     arguments.append(self.expr())
-            # elif self.current_token.type == GRACCENT:
-            #     arguments.append(self.expr())
-            # elif self.current_token.type == APOSTROPHE:
-            #     arguments.append(self.expr())
-                # self.eat(APOSTROPHE)
-                # if self.current_token.value == "'":
-                #     arguments.append(String(' '))
-                # else:
-                #     arguments.append(String(self.current_token.value))
-                # if self.current_token.type == ID:
-                #     self.eat(ID)
-                # elif self.current_token.type == COMMA:
-                #     self.eat(COMMA)
-                # elif self.current_token.type == HASH:
-                #     self.eat(HASH)
-                # elif self.current_token.type == MUL:
-                #     self.eat(MUL)
-                # elif self.current_token.type == EMARK:
-                #     self.eat(EMARK)
-                # elif self.current_token.type == QMARK:
-                #     self.eat(QMARK)
-                # elif self.current_token.type == DOT:
-                #     self.eat(DOT)
-                # self.eat(APOSTROPHE)
-            # else:
-            #     arguments.append(Num(self.current_token))
-            #     self.eat(INTEGER)
             if self.current_token.type == COMMA:
                 self.eat(COMMA)
         self.eat(RBRACKET)

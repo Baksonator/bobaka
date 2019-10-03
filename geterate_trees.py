@@ -18,12 +18,11 @@ for dir_name in os.listdir(path):
     dir_name = os.path.join(dir_path, dir_name)
 
     input_filename = '{}.{}'.format(dir_path, ext)
-    dot_filename = '{}.py'.format(dir_name)
-    png_filename = '{}.png'.format(dir_name)
+    py_filename = '{}.py'.format(dir_name)
 
     os.system('python getastdot.py {} > {}'.format(
         input_filename,
-        dot_filename
+        py_filename
     ))
 
 

@@ -1,6 +1,5 @@
 from interpreter.lexical_analysis.token import Token
 from interpreter.lexical_analysis.tokenType import *
-import string
 
 class Lexer(object):
     def __init__(self, text):
@@ -69,10 +68,6 @@ class Lexer(object):
         while self.current_char is not None:
             if self.current_char.isspace():
                 self.skip_whitespace()
-
-            # print('------')
-            # print(self.current_char)
-            # print('******')
 
             if self.current_char is None:
                 return Token(EOF, None)
